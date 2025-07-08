@@ -4,4 +4,4 @@ RUN mkdir scripts
 
 COPY ./scripts /scripts
 
-CMD ["bin/bash"]
+CMD ["/bin/bash"]

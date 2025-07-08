@@ -1,4 +1,4 @@
-source(file = "scripts/fucntions_on_server.R")
+source(file = "/scripts/functions_on_server.R")
 
 # timepoint can be ("23days", "1month", "1.5month", "2month", "3month", "4month", "5month", "6month")
 args <- commandArgs(trailingOnly = TRUE)
