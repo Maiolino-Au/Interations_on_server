@@ -21,7 +21,7 @@ tmp <- capture.output(
         reduced.output = T, 
         print.plot = F,
         name_save = timepoint,
-        exec.enrichR = T
+        exec.enrichR = F
     ),
     file = paste0("/Results/output_", timepoint, ".txt")
 )
