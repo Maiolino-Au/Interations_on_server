@@ -1,14 +1,15 @@
 #!/bin/bash
 
-echo "Copying folder from Drive"
+# echo "Copying folder from Drive"
 
-cp -r /media/"$USER"/Elements/scrnaseq_on_server "$HOME"/Documents/Maiolino_scrna
+# cp -r /media/"$USER"/Elements/scrnaseq_on_server "$HOME"/Maiolino_scrna
 
-echo "File copied - Loading Docker image"
+# echo "File copied - Loading Docker image"
 
-docker load -i "$HOME"/Documents/Maiolino_scrna/scrnaseq_on_server/scrnaseq_on_server_doc.tar
+# docker load -i "$HOME"/Maiolino_scrna/scrnaseq_on_server/scrnaseq_on_server_doc.tar
 
-echo "Docker image loaded - Starting analyses"
+# echo "Docker image loaded"
+echo "Starting analyses"
 
 # Start timing
 start_time=$(date +%s)
@@ -17,9 +18,9 @@ timepoints=("23days" "1month" "1.5month" "2month" "3month" "4month" "5month" "6m
 
 for tp in "${timepoints[@]}"; do
     docker run -it --rm \
-        -v "$HOME"/Documents/Maiolino_scrna/Data:/Data \
-        -v "$HOME"/Documents/Maiolino_scrna/Results:/Results \
-        scrnaseq_on_server_doc Rscript RUN.R "$tp"
+        -v "$HOME"/Maiolino_scrna/Data:/Data \
+        -v "$HOME"/Maiolino_scrna/Results:/Results \
+        scrnaseq_on_server_doc Rscript scripts/RUN.R "$tp"
 done
 
 wait
@@ -30,10 +31,13 @@ runtime=$((end_time - start_time))
 minutes=$((runtime / 60))
 seconds=$((runtime % 60))
 
-echo "Analysis finished - Transferring results"
+echo "Analysis finished"
 
-cp -r "$HOME"/Documents/Maiolino_scrna/Results /media/"$USER"/Elements/Iterations_on_server_result
+#echo "Transferring results"
 
-echo "Results transferred - END"
+# cp -r "$HOME"/Maiolino_scrna/Results /media/"$USER"/Elements/Iterations_on_server_result
+
+#echo "Results transferred - END"
+
 echo "Total runtime: ${minutes} minutes and ${seconds} seconds"
-echo "Total runtime: ${minutes} minutes and ${seconds} seconds" > /media/"$USER"/Elements/runtime.txt
+echo "Total runtime: ${minutes} minutes and ${seconds} seconds" > "$HOME"/Maiolino_scrna/Results/runtime.txt
