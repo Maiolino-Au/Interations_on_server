@@ -12,7 +12,7 @@ tmp <- capture.output(
         timepoints = timepoint,
         housekeeping_genes = c("ACTB", "DLG4"),
         genes_of_interest = c("SRCIN1", "KIAA1217", "CIT"),
-        path_to_data = "/sharedFolder/Data/",
+        path_to_data = "/Data/",
         res_list = seq(0.4, 1, by = 0.1),
         dim_list = c(20, 30, 40),
         top_n_genes = 50,
@@ -23,5 +23,5 @@ tmp <- capture.output(
         name_save = timepoint,
         exec.enrichR = T
     ),
-    file = paste0("/sharedFolder/output_", timepoint, ".txt")
+    file = paste0("/Results/output_", timepoint, ".txt")
 )
